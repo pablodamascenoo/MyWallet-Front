@@ -6,11 +6,21 @@ export const Container = styled.main`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 24px;
 
   h1 {
     font-family: "Saira Stencil One", cursive;
     color: white;
     font-size: 32px;
+  }
+
+  a {
+    text-decoration: none;
+    color: white;
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  form {
+    margin: 24px 0 36px 0;
   }
 `;

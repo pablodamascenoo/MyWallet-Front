@@ -26,6 +26,8 @@ input{
     border-radius: 5px;
     border: none;
     padding-left: 15px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
 
     ::placeholder{
         color: black;
