@@ -7,7 +7,7 @@ import { Container } from "./style";
 export default function LoginScreen() {
   const [login, SetLogin] = useState({ email: "", password: "" });
 
-  const navigate = useNavigate();
+  const Navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
