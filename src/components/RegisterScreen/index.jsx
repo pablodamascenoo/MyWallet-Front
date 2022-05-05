@@ -31,7 +31,7 @@ export default function RegisterScreen() {
     }
 
     axios
-      .post("http://192.168.184.104:5000/cadastro", { ...register })
+      .post("http://localhost:5000/cadastro", { ...register })
       .then(() => {
         Navigate("/");
       })

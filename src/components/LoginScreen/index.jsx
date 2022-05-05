@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import UserContext from "../../contexts/UserContext";
 
 import { Container } from "./style";
 
 export default function LoginScreen() {
   const [login, SetLogin] = useState({ email: "", password: "" });
+  const { SetUserInfo } = useContext(UserContext);
 
   const Navigate = useNavigate();
 
@@ -21,12 +23,18 @@ export default function LoginScreen() {
     }
 
     axios
-      .post("http://192.168.184.104:5000/login", { ...login })
-      .then(() => {
-        alert("deu certo yeeeee");
+      .post("http://localhost:5000/login", { ...login })
+      .then((obj) => {
+        const { data } = obj;
+        localStorage.setItem(
+          "UserInfo",
+          JSON.stringify({ token: data.token, name: data.name })
+        );
+        SetUserInfo({ token: data.token, name: data.name });
+        Navigate("/cadastrar");
       })
       .catch((error) => {
-        alert("deu merda vish");
+        alert(error);
       });
   }
 
