@@ -20,7 +20,8 @@ body{
 }
 
 input{
-    width: 326px;
+    width: 100%;
+    max-width: 326px;
     height: 58px;
     background: #FFFFFF;
     border-radius: 5px;
@@ -37,12 +38,15 @@ input{
 }
 
 form {
+    width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 13px;
 
     button{
-        width: 326px;
+        width: 100%;
+        max-width: 326px;
         height: 46px;
         background-color: #A328D6;
         border: none;
