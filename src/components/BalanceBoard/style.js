@@ -7,6 +7,7 @@ export const Box = styled.div`
   background: #ffffff;
   border-radius: 5px;
   position: relative;
+  padding: 23px 12px 12px;
 
   h2 {
     color: #868686;
@@ -16,5 +17,21 @@ export const Box = styled.div`
     top: 50%;
     left: 73px;
     text-align: center;
+  }
+
+  footer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 30px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 0 12px;
+    font-size: 17px;
+
+    p:last-of-type {
+      color: ${(props) => (props.balance >= 0 ? "#03AC00" : "#C70000")};
+    }
   }
 `;
