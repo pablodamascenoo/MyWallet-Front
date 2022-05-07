@@ -14,8 +14,6 @@ export default function App() {
     JSON.parse(localStorage.getItem("UserInfo"))
   );
 
-  console.log(userInfo);
-
   return (
     <BrowserRouter>
       <Reset />
