@@ -22,6 +22,11 @@ export default function LoginScreen() {
       return;
     }
 
+    if (login.password.length < 3 || login.password.length > 30) {
+      alert("A senha deve conter entre 3 e 30 caracteres");
+      return;
+    }
+
     axios
       .post("http://localhost:5000/login", { ...login })
       .then((obj) => {
@@ -35,6 +40,11 @@ export default function LoginScreen() {
       })
       .catch((error) => {
         alert(error);
+        console.log(
+          error.response.status === 401
+            ? "email e/ou senha incorretos!"
+            : error.response.message
+        );
       });
   }
 

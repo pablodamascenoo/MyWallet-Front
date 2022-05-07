@@ -2,10 +2,13 @@ import styled from "styled-components";
 
 export const Container = styled.main`
   height: 100%;
+  width: 87%;
+  max-width: 326px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin: 0 auto;
 
   h1 {
     font-family: "Saira Stencil One", cursive;
