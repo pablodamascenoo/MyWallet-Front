@@ -11,10 +11,13 @@ import minus from "./../../assets/images/minus-circle.svg";
 
 import { Container } from "../LoginScreen/style";
 import { Title, ButtonBox } from "./style";
+import { useNavigate } from "react-router-dom";
 
 export default function BalanceScreen() {
   const [extract, SetExtract] = useState([]);
   const { userInfo } = useContext(UserContext);
+
+  const navigate = useNavigate();
 
   const config = {
     headers: {
@@ -23,6 +26,10 @@ export default function BalanceScreen() {
   };
 
   useEffect(() => {
+    if (!userInfo) {
+      navigate("/");
+      return;
+    }
     const promisse = axios.get("http://localhost:5000/balance", config);
 
     promisse.then((obj) => {
@@ -31,11 +38,16 @@ export default function BalanceScreen() {
     });
   }, []);
 
+  function logOut() {
+    localStorage.clear();
+    navigate("/");
+  }
+
   return (
     <Container>
       <Title>
-        <h1>Olá, {userInfo.name}</h1>
-        <img src={logout} alt="log-out" />
+        <h1>Olá, {userInfo?.name}</h1>
+        <img src={logout} alt="log-out" onClick={logOut} />
       </Title>
       <BalanceBoard extract={extract} />
       <ButtonBox>
