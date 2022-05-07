@@ -1,4 +1,4 @@
-import React from react
+import React from "react";
 import Transaction from "../Transaction";
 
 import { Box } from "./style";
@@ -25,7 +25,7 @@ export default function BalanceBoard({ extract }) {
       )}
       {values.length > 0 ? (
         <footer>
-          <p>Saldo</p>
+          <p>SALDO</p>
           <p>{balanceStr.replace(/\-/, "")}</p>
         </footer>
       ) : (

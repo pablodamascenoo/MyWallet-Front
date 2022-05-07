@@ -29,9 +29,11 @@ export const Box = styled.div`
     left: 0;
     padding: 0 12px;
     font-size: 17px;
+    font-weight: 700;
 
     p:last-of-type {
       color: ${(props) => (props.balance >= 0 ? "#03AC00" : "#C70000")};
+      font-weight: 400;
     }
   }
 `;
