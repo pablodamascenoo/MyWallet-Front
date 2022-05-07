@@ -36,7 +36,7 @@ export default function LoginScreen() {
           JSON.stringify({ token: data.token, name: data.name })
         );
         SetUserInfo({ token: data.token, name: data.name });
-        Navigate("/transacoes");
+        Navigate("/carteira");
       })
       .catch((error) => {
         alert(error);

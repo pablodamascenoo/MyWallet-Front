@@ -6,6 +6,7 @@ export const Title = styled.header`
   justify-content: space-between;
 
   h1 {
+    font-family: "Raleway", sans-serif;
     font-size: 26px;
     font-weight: 700;
     line-height: 31px;

@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginScreen from "./LoginScreen/";
 import RegisterScreen from "./RegisterScreen";
 import BalanceScreen from "./BalanceScreen";
+import TransactionScreen from "./TransactionScreen";
 import UserContext from "../contexts/UserContext";
 
 import GlobalStyle from "../assets/global_styles/GlobalStyle";
@@ -22,7 +23,15 @@ export default function App() {
         <Routes>
           <Route path="/" element={<LoginScreen />} />
           <Route path="/cadastrar" element={<RegisterScreen />} />
-          <Route path="/transacoes" element={<BalanceScreen />} />
+          <Route path="/carteira" element={<BalanceScreen />} />
+          <Route
+            path="/entrada"
+            element={<TransactionScreen type={"income"} />}
+          />
+          <Route
+            path="/saida"
+            element={<TransactionScreen type={"outgoing"} />}
+          />
         </Routes>
       </UserContext.Provider>
     </BrowserRouter>

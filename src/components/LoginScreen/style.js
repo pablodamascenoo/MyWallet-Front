@@ -9,6 +9,7 @@ export const Container = styled.main`
   align-items: center;
   justify-content: center;
   margin: 0 auto;
+  position: relative;
 
   h1 {
     font-family: "Saira Stencil One", cursive;
