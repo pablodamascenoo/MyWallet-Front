@@ -4,6 +4,8 @@ export const Line = styled.p`
   display: flex;
   justify-content: space-between;
   width: 100%;
+  font-size: 16px;
+  margin-bottom: 20px;
 `;
 
 export const Date = styled.span`
