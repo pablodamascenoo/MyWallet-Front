@@ -31,7 +31,7 @@ export default function RegisterScreen() {
     }
 
     axios
-      .post("http://localhost:5000/cadastro", { ...register })
+      .post("https://my-wallet-13.herokuapp.com/cadastro", { ...register })
       .then(() => {
         Navigate("/");
       })

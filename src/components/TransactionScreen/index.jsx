@@ -26,7 +26,7 @@ export default function TransactionScreen({ type }) {
       navigate("/");
       return;
     }
-    if (type !== "income" || type !== "outgoing") {
+    if (type !== "income" && type !== "outgoing") {
       navigate("/carteira");
       return;
     }
@@ -37,8 +37,10 @@ export default function TransactionScreen({ type }) {
   function handleSubmit(e) {
     e.preventDefault();
 
+    //TODO: Add the number mask to value input
+
     const promisse = axios.post(
-      "http://localhost:5000/balance",
+      "https://my-wallet-13.herokuapp.com/balance",
       {
         type,
         value: transaction.value,

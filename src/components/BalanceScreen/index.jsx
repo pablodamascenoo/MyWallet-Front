@@ -30,7 +30,10 @@ export default function BalanceScreen() {
       navigate("/");
       return;
     }
-    const promisse = axios.get("http://localhost:5000/balance", config);
+    const promisse = axios.get(
+      "https://my-wallet-13.herokuapp.com/balance",
+      config
+    );
 
     promisse.then((obj) => {
       const { data } = obj;
@@ -51,11 +54,19 @@ export default function BalanceScreen() {
       </Title>
       <BalanceBoard extract={extract} />
       <ButtonBox>
-        <button>
+        <button
+          onClick={() => {
+            navigate("/entrada");
+          }}
+        >
           <img src={plus} alt="mais" />
           <p>Nova entrada</p>
         </button>
-        <button>
+        <button
+          onClick={() => {
+            navigate("/saida");
+          }}
+        >
           <img src={minus} alt="menos" />
           <p>Nova saída</p>
         </button>

@@ -10,6 +10,10 @@ body{
     height: 100vh;
 }
 
+button, img{
+    cursor: pointer;
+}
+
 .root{
     width: 100%;
     height: 100%;

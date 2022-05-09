@@ -28,7 +28,7 @@ export default function LoginScreen() {
     }
 
     axios
-      .post("http://localhost:5000/login", { ...login })
+      .post("https://my-wallet-13.herokuapp.com/login", { ...login })
       .then((obj) => {
         const { data } = obj;
         localStorage.setItem(
