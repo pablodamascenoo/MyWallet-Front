@@ -44,4 +44,10 @@ export const TransactionBox = styled.div`
 
   height: 100%;
   padding-bottom: 30px;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
