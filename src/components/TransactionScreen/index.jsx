@@ -10,6 +10,7 @@ export default function TransactionScreen({ type }) {
   const { userInfo } = useContext(UserContext);
   const [transaction, SetTransaction] = useState({
     value: "",
+    parsedValue: "0,00",
     description: "",
   });
 
@@ -37,13 +38,11 @@ export default function TransactionScreen({ type }) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    //TODO: Add the number mask to value input
-
     const promisse = axios.post(
       "https://my-wallet-13.herokuapp.com/balance",
       {
         type,
-        value: transaction.value,
+        value: transaction.parsedValue,
         description: transaction.description,
       },
       config
@@ -58,6 +57,17 @@ export default function TransactionScreen({ type }) {
     });
   }
 
+  function numberMask(e) {
+    let value =
+      transaction.parsedValue.length > e.target.value.length
+        ? transaction.value.slice(0, transaction.value.length - 1)
+        : `${transaction.value}${e.target.value[e.target.value.length - 1]}`;
+    value = value.length === 0 ? "0" : value;
+    let parsedValue = (parseFloat(value) / 100).toFixed(2);
+    parsedValue = parsedValue.toString().replace(/\./, ",");
+    SetTransaction({ ...transaction, value, parsedValue });
+  }
+
   return (
     <Container>
       <Box>
@@ -68,9 +78,9 @@ export default function TransactionScreen({ type }) {
           <input
             type="text"
             placeholder="Valor"
-            value={transaction.value}
+            value={transaction.parsedValue}
             onChange={(e) => {
-              SetTransaction({ ...transaction, value: e.target.value });
+              numberMask(e);
             }}
           />
           <input
