@@ -1,7 +1,7 @@
 import React from "react";
 import Transaction from "../Transaction";
 
-import { Box } from "./style";
+import { Box, TransactionBox } from "./style";
 
 export default function BalanceBoard({ extract }) {
   let values = extract.map((item) => {
@@ -17,9 +17,11 @@ export default function BalanceBoard({ extract }) {
   return (
     <Box balance={balance}>
       {extract.length > 0 ? (
-        extract.map((value, index) => {
-          return <Transaction key={index} obj={value} />;
-        })
+        <TransactionBox>
+          {extract.map((value, index) => {
+            return <Transaction key={index} obj={value} />;
+          })}
+        </TransactionBox>
       ) : (
         <h2>Não há registros de entrada ou saída</h2>
       )}

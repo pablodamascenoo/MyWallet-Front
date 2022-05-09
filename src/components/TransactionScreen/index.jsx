@@ -41,6 +41,15 @@ export default function TransactionScreen({ type }) {
     e.preventDefault();
     SetSubmited(true);
 
+    if (
+      transaction.parsedValue === "0,00" ||
+      transaction.description.length === 0
+    ) {
+      alert("Preencha os campos de valor e descrição");
+      SetSubmited(false);
+      return;
+    }
+
     const promisse = axios.post(
       "https://my-wallet-13.herokuapp.com/balance",
       {
