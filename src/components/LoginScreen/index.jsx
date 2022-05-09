@@ -60,6 +60,7 @@ export default function LoginScreen() {
       <h1>MyWallet</h1>
       <form onSubmit={handleSubmit}>
         <input
+          disabled={submited}
           type="email"
           placeholder="E-mail"
           required
@@ -69,6 +70,7 @@ export default function LoginScreen() {
           }}
         />
         <input
+          disabled={submited}
           type="password"
           placeholder="Senha"
           required

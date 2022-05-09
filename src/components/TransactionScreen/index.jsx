@@ -81,6 +81,7 @@ export default function TransactionScreen({ type }) {
         </Title>
         <form onSubmit={handleSubmit}>
           <input
+            disabled={submited}
             type="text"
             placeholder="Valor"
             value={transaction.parsedValue}
@@ -89,6 +90,7 @@ export default function TransactionScreen({ type }) {
             }}
           />
           <input
+            disabled={submited}
             type="text"
             max={25}
             placeholder="Descrição"

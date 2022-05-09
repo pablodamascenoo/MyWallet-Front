@@ -53,6 +53,7 @@ export default function RegisterScreen() {
       <h1>MyWallet</h1>
       <form onSubmit={handleSubmit}>
         <input
+          disabled={submited}
           type="text"
           value={register.name}
           onChange={(e) => {
@@ -61,6 +62,7 @@ export default function RegisterScreen() {
           placeholder="Nome"
         />
         <input
+          disabled={submited}
           type="email"
           value={register.email}
           onChange={(e) => {
@@ -69,6 +71,7 @@ export default function RegisterScreen() {
           placeholder="E-mail"
         />
         <input
+          disabled={submited}
           type="password"
           value={register.password}
           onChange={(e) => {
@@ -77,6 +80,7 @@ export default function RegisterScreen() {
           placeholder="Senha"
         />
         <input
+          disabled={submited}
           type="password"
           value={register.repassword}
           onChange={(e) => {
