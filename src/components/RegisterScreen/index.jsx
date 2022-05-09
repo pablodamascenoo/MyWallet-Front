@@ -42,7 +42,7 @@ export default function RegisterScreen() {
         Navigate("/");
       })
       .catch((e) => {
-        alert(e.response.data.message);
+        alert(e.response.data);
         console.log(e);
         SetSubmited(false);
       });

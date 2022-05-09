@@ -39,6 +39,11 @@ export default function BalanceScreen() {
       const { data } = obj;
       SetExtract([...data]);
     });
+
+    promisse.catch((error) => {
+      alert(error.response.data);
+      navigate("/");
+    });
   }, []);
 
   function logOut() {
