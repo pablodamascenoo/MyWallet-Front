@@ -3,27 +3,32 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import UserContext from "../../contexts/UserContext";
 
+import LoaderSpinner from "../LoaderSpinner";
 import { Container } from "./style";
 
 export default function LoginScreen() {
   const [login, SetLogin] = useState({ email: "", password: "" });
+  const [submited, SetSubmited] = useState(false);
   const { SetUserInfo } = useContext(UserContext);
 
   const Navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
+    SetSubmited(true);
 
     const emailRegex =
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     if (!emailRegex.test(login.email)) {
       alert("O email deve ser preenchido corretamente");
+      SetSubmited(false);
       return;
     }
 
     if (login.password.length < 3 || login.password.length > 30) {
       alert("A senha deve conter entre 3 e 30 caracteres");
+      SetSubmited(false);
       return;
     }
 
@@ -36,6 +41,7 @@ export default function LoginScreen() {
           JSON.stringify({ token: data.token, name: data.name })
         );
         SetUserInfo({ token: data.token, name: data.name });
+        SetSubmited(false);
         Navigate("/carteira");
       })
       .catch((error) => {
@@ -45,6 +51,7 @@ export default function LoginScreen() {
             ? "email e/ou senha incorretos!"
             : error.response.message
         );
+        SetSubmited(false);
       });
   }
 
@@ -70,7 +77,7 @@ export default function LoginScreen() {
             SetLogin({ ...login, password: e.target.value });
           }}
         />
-        <button type="submit">Entrar</button>
+        <button type="submit">{submited ? <LoaderSpinner /> : "Entrar"}</button>
       </form>
       <Link to="/cadastrar">
         <p>Primeira vez? Cadastre-se!</p>

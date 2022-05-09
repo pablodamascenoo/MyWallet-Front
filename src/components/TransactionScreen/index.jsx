@@ -5,6 +5,7 @@ import axios from "axios";
 
 import UserContext from "../../contexts/UserContext";
 import { Title, Box } from "./style";
+import LoaderSpinner from "../LoaderSpinner";
 
 export default function TransactionScreen({ type }) {
   const { userInfo } = useContext(UserContext);
@@ -13,6 +14,7 @@ export default function TransactionScreen({ type }) {
     parsedValue: "0,00",
     description: "",
   });
+  const [submited, SetSubmited] = useState(false);
 
   const navigate = useNavigate();
 
@@ -37,6 +39,7 @@ export default function TransactionScreen({ type }) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    SetSubmited(true);
 
     const promisse = axios.post(
       "https://my-wallet-13.herokuapp.com/balance",
@@ -49,11 +52,13 @@ export default function TransactionScreen({ type }) {
     );
 
     promisse.then(() => {
+      SetSubmited(false);
       navigate("/carteira");
     });
 
     promisse.catch((error) => {
       alert(error);
+      SetSubmited(false);
     });
   }
 
@@ -92,7 +97,7 @@ export default function TransactionScreen({ type }) {
               SetTransaction({ ...transaction, description: e.target.value });
             }}
           />
-          <button>{`Salvar ${typeText}`}</button>
+          <button>{submited ? <LoaderSpinner /> : `Salvar ${typeText}`}</button>
         </form>
       </Box>
     </Container>

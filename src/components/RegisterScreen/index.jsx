@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { Container } from "../LoginScreen/style";
+import LoaderSpinner from "../LoaderSpinner";
 
 export default function RegisterScreen() {
   const [register, SetRegister] = useState({
@@ -11,33 +12,39 @@ export default function RegisterScreen() {
     password: "",
     repassword: "",
   });
+  const [submited, SetSubmited] = useState(false);
 
   const Navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
+    SetSubmited(true);
 
     const emailRegex =
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     if (!emailRegex.test(register.email)) {
       alert("O email deve ser preenchido corretamente");
+      SetSubmited(false);
       return;
     }
 
     if (register.password !== register.repassword) {
       alert("As senhas devem coincidir");
+      SetSubmited(false);
       return;
     }
 
     axios
       .post("https://my-wallet-13.herokuapp.com/cadastro", { ...register })
       .then(() => {
+        SetSubmited(false);
         Navigate("/");
       })
       .catch((e) => {
         alert(e.response.data.message);
         console.log(e);
+        SetSubmited(false);
       });
   }
 
@@ -77,7 +84,9 @@ export default function RegisterScreen() {
           }}
           placeholder="Confirme a senha"
         />
-        <button type="submit">Cadastrar</button>
+        <button type="submit">
+          {submited ? <LoaderSpinner /> : "Cadastrar"}
+        </button>
       </form>
       <Link to="/">
         <p>Já tem uma conta? Entre agora!</p>

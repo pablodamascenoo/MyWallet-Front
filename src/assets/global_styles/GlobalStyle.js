@@ -59,6 +59,9 @@ form {
         font-family: 'Raleway', sans-serif;
         font-weight: bold;
         font-size: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
 
