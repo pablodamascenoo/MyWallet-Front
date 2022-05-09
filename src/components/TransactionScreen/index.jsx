@@ -57,7 +57,7 @@ export default function TransactionScreen({ type }) {
     });
 
     promisse.catch((error) => {
-      alert(error);
+      alert(error.response.data.message);
       SetSubmited(false);
     });
   }

@@ -45,7 +45,7 @@ export default function LoginScreen() {
         Navigate("/carteira");
       })
       .catch((error) => {
-        alert(error);
+        alert(error.response.data.message);
         console.log(
           error.response.status === 401
             ? "email e/ou senha incorretos!"
